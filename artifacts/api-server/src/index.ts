@@ -1,4 +1,9 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
+
+// Load .env from current directory first, then root
+config();
+config({ path: '../../../.env' });
+
 import net from 'net';
 import { execSync } from 'child_process';
 import { createServer, runStartupTasks } from "./app.js";
