@@ -375,9 +375,9 @@ function analyzeErrorCause(report: ErrorReport): {
 }
 
 function useTabCount(tab: Exclude<Tab, "customers">, sourceApp: string, severity: string, errorType: string) {
-  const statuses = TAB_STATUS_FILTERS[tab];
+  const statuses = tab === "filescan" ? [] : TAB_STATUS_FILTERS[tab];
   const p = new URLSearchParams({ page: "1", limit: "1" });
-  statuses.forEach(s => p.append("status", s));
+  statuses.forEach((s: string) => p.append("status", s));
   if (sourceApp) p.set("sourceApp", sourceApp);
   if (severity) p.set("severity", severity);
   if (errorType) p.set("errorType", errorType);
