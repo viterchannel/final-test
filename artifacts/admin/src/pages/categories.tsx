@@ -335,12 +335,13 @@ export default function CategoriesPage() {
           </div>
         ) : (
           /* Normal view: drag-and-drop enabled */
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="top-level" type="TOP_LEVEL">
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
+          <>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="top-level" type="TOP_LEVEL">
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
                   className={`space-y-2 transition-colors rounded-2xl ${snapshot.isDraggingOver ? "bg-indigo-50/50 p-2" : ""}`}
                 >
                   {[...filteredCategories].sort((a, b) => a.sortOrder - b.sortOrder).slice(0, showAllCats ? undefined : 200).map((cat, index) => {
@@ -497,6 +498,7 @@ export default function CategoriesPage() {
               <Button variant="outline" size="sm" className="rounded-xl" onClick={() => setShowAllCats(true)}>Load more</Button>
             </div>
           )}
+        </>
         )}
       </div>
 
