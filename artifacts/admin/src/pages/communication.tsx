@@ -1473,6 +1473,8 @@ function AjkIdsTab() {
 }
 
 export default function Communication() {
+  const { toast } = useToast();
+
   return (
     <div className="space-y-6">
       <PageHeader
